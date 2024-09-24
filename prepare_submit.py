@@ -50,11 +50,12 @@ def check_file(file: str, check_aid: str):
             inside_files.add(ff)
         # --
     # --
+    global required_files 
     required_files -= inside_files
     combined_files = required_files | optional_files
     combined_files -= inside_files
       
-    assert len(required_files) != 0, f"Some required files are missing: {required_files}"
+    assert len(required_files) == 0, f"Some required files are missing: {required_files}"
     # --
     assert target_prefix[:-1] == check_aid, f"AndrewID mismatched: {target_prefix[:-1]} vs {check_aid}"
     print(f"Read zipfile {file}, please check that your andrew-id is: {target_prefix[:-1]}")
